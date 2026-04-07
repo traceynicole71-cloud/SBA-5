@@ -1,0 +1,43 @@
+body {
+    font-family:Arial, Helvetica, sans-serif;
+    background-color: pink;
+    margin: 20px;
+}
+
+h1 {text-align: center;
+}
+
+h2 {
+    text-decoration: underline;
+}
+
+form {
+    margin-bottom: 20px;
+}
+
+input, textarea {
+    width: 300px;
+    padding: 8px;
+    margin-bottom: 10px;
+}
+
+button {
+    padding: 8px, 12px;
+    background-color: lightblue;
+    cursor: pointer;
+}
+
+.error {
+    color: red;
+    font-size: 14px;
+}
+
+.post {
+    border: 1px double white;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.post button {
+    margin-right: 5px;
+}
