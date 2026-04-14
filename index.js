@@ -3,12 +3,12 @@ let posts = [];
 let editPostId = null;
 
 //DOM element selection
-const form = DocumentFragment.getElementById("postForm");
-const titleInput = DocumentFragment.getElementById("title");
-const contentInput = DocumentFragment.getElementById("content");
-const titleError = DocumentFragment.getElementById("titleError");
-const contentError = DocumentFragment.getElementById("contentError");
-const postsContainer = DocumentFragment.getElementById("postContainer");
+const form = document.getElementById("postForm");
+const titleInput = document.getElementById("title");
+const contentInput = document.getElementById("content");
+const titleError = document.getElementById("titleError");
+const contentError = document.getElementById("contentError");
+const postsContainer = document.getElementById("postContainer");
 
 //load posts from local storage
 function loadPosts() {
@@ -37,8 +37,15 @@ function renderPosts() {
 }
 
 //handle new post for submission
-form .addEventLiostener("submit", function(event) {
+form.addEventListener("submit", function(event) {
     event.preventDefault();
+
+    let title = titleInput.value.trim();
+    let content = contentInput.value.trim();
+    let isValid = true;
+
+    titleError.textContent = "";
+    contentError.textContent = "";
 
     if (title === "") {
         titleError.textContent = "Title is Required.";
@@ -50,24 +57,17 @@ form .addEventLiostener("submit", function(event) {
     }
     if (!isValid) return;
 
-    titleError.textContent = "";
-    contentError.textContent = "";
-
-    let title = titleInput.value.trim();
-    let content = contentInput.value.trim();
-    let isValid = true;
-
     if (editPostId !== null) {
-        post = post.map(post => {
-            if (post.id === editPostId) {
-                return { ...post, title, content };
+        posts = posts.map(p => {
+            if (p.id === editPostId) {
+                return { ...p, title, content };
             }
-            return post;
+            return p;
         });
         editPostId = null;
     } else {
         const newPost = {
-            id:Date.now(),
+            id: Date.now(),
             title: title,
             content: content
         };
@@ -80,7 +80,7 @@ form .addEventLiostener("submit", function(event) {
 
 //handle delete post
 function deletePost(id) {
-    post = posts.filter(post => post.id !== id);
+    posts = posts.filter(post => post.id !== id);
     savePosts();
     renderPosts();
 }
@@ -88,11 +88,13 @@ function deletePost(id) {
 //handle edit post
 function editPost(id) {
     const post = posts.find(p => p.id === id);
-    titleInput.value = post.title;
-    contentInput.value = post.content;
-    editPostId = id;
+    if (post) {
+        titleInput.value = post.title;
+        contentInput.value = post.content;
+        editPostId = id;
+        window.scrollTo(0, 0);
+    }
 }
 
 loadPosts();
-
 

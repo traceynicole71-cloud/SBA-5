@@ -18,7 +18,12 @@
 
         <form id="postForm">
             <label>Title:</label><br>
+            <input type="text" id="title"><br>
             <span id="titleError" class="error"></span><br>
+
+            <label>Content:</label><br>
+            <textarea id="content" rows="5"></textarea><br>
+            <span id="contentError" class="error"></span><br>
 
             <button type="submit">Save Post</button>
     </form>
@@ -26,7 +31,7 @@
 
     <section>
         <h2>My Posts</h2>
-        <div id=" postContainer"></div>
+        <div id="postContainer"></div>
     </section>
 
 </body>

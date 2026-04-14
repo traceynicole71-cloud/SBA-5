@@ -19,12 +19,14 @@ input, textarea {
     width: 300px;
     padding: 8px;
     margin-bottom: 10px;
+    display: block;
 }
 
 button {
-    padding: 8px, 12px;
+    padding: 8px 12px;
     background-color: lightblue;
     cursor: pointer;
+    border: 1px solid gray;
 }
 
 .error {
@@ -36,6 +38,7 @@ button {
     border: 1px double white;
     padding: 10px;
     margin-bottom: 10px;
+    background-color: rgba(255, 255, 255, 0.3);
 }
 
 .post button {
